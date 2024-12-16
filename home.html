@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        /* Style for the image carousel */
+        .carousel {
+            width: 100%;
+            height: 400px; /* Set a fixed height for the carousel */
+            overflow: hidden;
+            position: relative;
+            margin-top: 20px;
+        }
+
+        .carousel-images {
+            display: flex;
+            transition: transform 0.5s ease;
+        }
+
+        .carousel-images img {
+            width: 100%; /* Ensure images span the full width of the carousel */
+            height: 100%; /* Ensure the height of the image covers the full height of the carousel */
+            object-fit: cover; /* This will ensure that the image covers the space without distorting */
+        }
+
+        /* Style for the carousel buttons */
+        .carousel-btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: rgba(0, 0, 0, 0.5);
+            color: white;
+            border: none;
+            padding: 10px;
+            cursor: pointer;
+            z-index: 10;
+        }
+
+        .prev-btn {
+            left: 10px;
+        }
+
+        .next-btn {
+            right: 10px;
+        }
+
+        /* Scrolling Text Styles */
+        .scrolling-text-container {
+            width: 100%;
+            overflow: hidden;
+            background-color: #333; /* Background color for the scrolling area */
+            color: white;
+            padding: 10px;
+            margin: 20px 0;
+            border-radius: 5px; /* Optional: rounded corners for the box */
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2); /* Optional: subtle shadow around the box */
+        }
+
+        .scrolling-text {
+            display: inline-block;
+            white-space: nowrap;
+            animation: scrollText 10s linear infinite;
+            font-size: 20px; /* Set the font size */
+            font-weight: bold;
+        }
+
+        @keyframes scrollText {
+            0% {
+                transform: translateX(100%); /* Start off-screen to the right */
+            }
+            100% {
+                transform: translateX(-100%); /* Move off-screen to the left */
+            }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .carousel {
+                height: 300px; /* Adjust height for smaller screens */
+            }
+        }
+
+        @media (max-width: 480px) {
+            .carousel {
+                height: 250px; /* Adjust height for very small screens */
+            }
+        }
+
+        /* General Body Styles */
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f7fa;
+        }
+
+        /* Navigation Bar */
+        nav {
+            background-color: #333;
+            padding: 10px 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        nav ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+        }
+
+        nav ul li {
+            margin: 0 20px;
+        }
+
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-size: 18px;
+            padding: 8px 16px;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+
+        nav ul li a:hover {
+            background-color: #575757;
+        }
+
+        /* Hero Section */
+        .hero-section {
+            background-color: #007bff;
+            color: white;
+            padding: 80px 20px;
+            text-align: center;
+        }
+
+        .hero-text h1 {
+            font-size: 50px;
+            margin-bottom: 20px;
+        }
+
+        .hero-text p {
+            font-size: 20px;
+            margin-bottom: 30px;
+        }
+
+        .hero-text .btn {
+            background-color: #fff;
+            color: #007bff;
+            padding: 10px 30px;
+            font-size: 18px;
+            border-radius: 5px;
+            text-decoration: none;
+        }
+
+        .hero-text .btn:hover {
+            background-color: #575757;
+            color: white;
+        }
+
+        /* About Section */
+        .about-section {
+            padding: 60px 20px;
+            text-align: center;
+            background-color: #f9f9f9;
+        }
+
+        .about-section h2 {
+            font-size: 32px;
+            margin-bottom: 20px;
+        }
+
+        .about-section p {
+            font-size: 18px;
+            color: #555;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        /* Services Section */
+        .services-section {
+            padding: 60px 20px;
+            text-align: center;
+        }
+
+        .services-section h2 {
+            font-size: 32px;
+            margin-bottom: 40px;
+        }
+
+        .service-item {
+            margin-bottom: 40px;
+        }
+
+        .service-item h3 {
+            font-size: 28px;
+            margin-bottom: 10px;
+        }
+
+        .service-item p {
+            font-size: 18px;
+            color: #555;
+        }
+
+        /* Call to Action Section */
+        .cta-section {
+            background-color: #007bff;
+            color: white;
+            padding: 60px 20px;
+            text-align: center;
+        }
+
+        .cta-section h2 {
+            font-size: 32px;
+            margin-bottom: 20px;
+        }
+
+        .cta-section p {
+            font-size: 18px;
+            margin-bottom: 30px;
+        }
+
+        .cta-section .cta-btn {
+            background-color: #fff;
+            color: #007bff;
+            padding: 12px 30px;
+            font-size: 20px;
+            border-radius: 5px;
+            text-decoration: none;
+        }
+
+        .cta-section .cta-btn:hover {
+            background-color: #575757;
+            color: white;
+        }
+
+        /* Footer */
+        footer {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 20px;
+            position: fixed;
+            width: 100%;
+            bottom: 0;
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <ul>
+            <li><a href="home.html">Home</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="contact.html">Contact</a></li>
+            <li><a href="user.html">User</a></li>
+            <li><a href="login.html">Login</a></li>
+            <li><a href="register.html">Register</a></li>
+        </ul>
+    </nav>
+    
+    <div class="container">
+        <!-- Scrolling Text Section Above the Carousel -->
+        <div class="scrolling-text-container">
+            <p class="scrolling-text">Welcome to Our Website - Hello, This is Surendra!<<<<<<<<<<</p>
+        </div>
+
+        <!-- Image Carousel Section -->
+        <div class="carousel">
+            <div class="carousel-images">
+                <img src="s2.jpg" alt="Image 1">
+                <img src="s2.jpg" alt="Image 2">
+                <img src="group.jpg" alt="Image 3">
+                <img src="pre.jpg" alt="Image 4">
+            </div>
+            <button class="carousel-btn prev-btn" onclick="moveSlide(-1)">&#10094;</button>
+            <button class="carousel-btn next-btn" onclick="moveSlide(1)">&#10095;</button>
+        </div>
+
+        <!-- Hero Section -->
+        <section class="hero-section">
+            <div class="hero-text">
+                <h1>Welcome to Our Website!</h1>
+                <p>Your solution to everything technology</p>
+                <a href="#about" class="btn">Learn More</a>
+            </div>
+        </section>
+
+        <!-- About Section -->
+        <section class="about-section">
+            <div class="container">
+                <h2>About Us</h2>
+                <p>We are a leading company in the tech world, providing innovative solutions and services to help your business thrive. Our expert team is dedicated to offering cutting-edge technology and a personalized approach for every client.</p>
+            </div>
+        </section>
+
+        <!-- Services Section -->
+        <section class="services-section">
+            <div class="container">
+                <h2>Our Services</h2>
+                <div class="service-item">
+                    <h3>Cloud Solutions</h3>
+                    <p>We provide reliable cloud solutions, offering scalability, security, and performance to your business operations.</p>
+                </div>
+                <div class="service-item">
+                    <h3>Web Development</h3>
+                    <p>Our team specializes in custom web development services tailored to your business needs, using the latest technologies.</p>
+                </div>
+                <div class="service-item">
+                    <h3>Consulting</h3>
+                    <p>Get expert advice and strategies on digital transformation, IT infrastructure, and business automation from our professionals.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Call to Action Section -->
+        <section class="cta-section">
+            <div class="container">
+                <h2>Get Started Today</h2>
+                <p>Ready to take your business to the next level? Get in touch with us and let’s start working on your success.</p>
+                <a href="#contact" class="cta-btn">Contact Us</a>
+            </div>
+        </section>
+
+        <h1></h1>
+        <p>This is the home page of the website. You can navigate to other pages from the menu.</p>
+    </div>
+
+    <footer>
+        <p>&copy; 2024 Your Website Name. All rights reserved.</p>
+    </footer>
+
+    <script>
+        let index = 0;
+
+        function moveSlide(step) {
+            const slides = document.querySelectorAll(".carousel-images img");
+            index += step;
+
+            if (index < 0) {
+                index = slides.length - 1;
+            } else if (index >= slides.length) {
+                index = 0;
+            }
+
+            document.querySelector(".carousel-images").style.transform = `translateX(${-index * 100}%)`;
+        }
+    </script>
+</body>
+</html>
