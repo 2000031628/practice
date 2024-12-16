@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>User Profile</title>
+    <title>Query Page</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
@@ -19,8 +19,15 @@
         </ul>
     </nav>
     <div class="container">
-        <h1>User Profile</h1>
-        <p>This is the User Profile page. You can display the user's personal details or account information here.</p>
+        <h1>Query Page</h1>
+        <p>This is the Query Page. Here, users can submit their queries, ask for support, or request more information about our services.</p>
+
+        <form action="/submit-query" method="POST">
+            <label for="query">Your Query:</label><br>
+            <textarea id="query" name="query" rows="4" cols="50" placeholder="Enter your query here..." required></textarea><br><br>
+            
+            <button type="submit" ><a href="home.html">Submit Query</a></button>
+        </form>
     </div>
     <footer>
         <p>&copy; 2024 Your Website Name. All rights reserved.</p>
